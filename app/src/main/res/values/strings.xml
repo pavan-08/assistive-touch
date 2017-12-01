@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Assistive Touch</string>
+    <string name="enable_touch">Assistive Touch Enable</string>
+    <string name="overlay_request">You have to allow draw overlay permission for "Assistive Touch" app in system settings</string>
+    <string name="action_refuse">Refuse</string>
+    <string name="action_proceed">Proceed</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="permission_refused">Permission refused</string>
+    <string name="admin_required">Admin permission is required. Open the application and allow "Assistive Touch" to be a device admin</string>
+    <string name="sample_device_admin_description">We need this permission to lock screen</string>
+    <string name="pref_file">AssistiveTouchPrefs</string>
+    <string name="service_state">serviceState</string>
+    <string name="process_name">:AssistiveTouch.Service</string>
+    <string name="notification_message">Assistive touch is running</string>
+    <string name="ticker_text">Ticker text</string>
+</resources>
