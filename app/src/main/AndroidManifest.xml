@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/touch_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/touch_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -21,7 +21,6 @@
 
         <service
             android:name=".AssistiveTouchService"
-            android:process="@string/process_name"
             android:enabled="true"
             android:exported="false"/>
         <receiver android:name=".MyAdmin"

@@ -12,5 +12,7 @@
     <string name="service_state">serviceState</string>
     <string name="process_name">:AssistiveTouch.Service</string>
     <string name="notification_message">Assistive touch is running</string>
-    <string name="ticker_text">Ticker text</string>
+    <string name="ticker_text">Assistive touch is running</string>
+    <string name="cid">service_channel</string>
+    <string name="cname">Assistive Touch Service</string>
 </resources>

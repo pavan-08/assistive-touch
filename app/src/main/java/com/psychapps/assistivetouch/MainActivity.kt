@@ -3,6 +3,8 @@ package com.psychapps.assistivetouch
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -15,6 +17,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.app.admin.DevicePolicyManager
 import android.content.ComponentName
+import android.support.annotation.RequiresApi
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         }
         checkDrawOverlayPermission()
         checkAdminPermission()
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel()
+        }
         mainSwitch.setOnCheckedChangeListener{_, isChecked ->
             val touchIntent = Intent(this, AssistiveTouchService::class.java)
             if(isChecked) {
@@ -46,6 +51,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel() {
+        val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val cId = getString(R.string.cid)
+        val cname = getString(R.string.cname)
+        val imp = NotificationManager.IMPORTANCE_LOW
+        val nchannel = NotificationChannel(cId,cname,imp)
+        nchannel.enableLights(false)
+        nchannel.enableVibration(false)
+        nm.createNotificationChannel(nchannel)
 
     }
 

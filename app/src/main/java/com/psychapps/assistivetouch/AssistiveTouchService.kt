@@ -47,10 +47,10 @@ class AssistiveTouchService : Service() {
         val notification = NotificationCompat.Builder(this, CHANNEL_DEFAULT_IMPORTANCE)
                 .setContentTitle(getText(R.string.app_name))
                 .setContentText(getText(R.string.notification_message))
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_touch)
                 .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setTicker(getText(R.string.ticker_text))
+                .setChannelId(getString(R.string.cid))
                 .build()
 
         startForeground(ONGOING_NOTIFICATION_ID, notification)

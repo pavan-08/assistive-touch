@@ -10,7 +10,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
-        android:src="@mipmap/touch_icon"
+        android:src="@drawable/ic_touch"
         tools:ignore="ContentDescription" />
 
     <LinearLayout
