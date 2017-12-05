@@ -147,7 +147,7 @@ class AssistiveTouchService : Service() {
 
                         //The check for dX <10 && YDiff< 10 because sometime elements moves a little while clicking.
                         //So that is click event.
-                        isClick = dX < 1 && dY < 1
+                        isClick = dX < 10 && dY < 10
                     }
                     MotionEvent.ACTION_MOVE -> {
                         //Calculate the X and Y coordinates of the view.
