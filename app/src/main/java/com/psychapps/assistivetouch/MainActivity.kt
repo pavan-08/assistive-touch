@@ -17,6 +17,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import android.app.admin.DevicePolicyManager
 import android.content.ComponentName
+import android.content.SharedPreferences
 import android.support.annotation.RequiresApi
 
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private val OVERLAY_PERMISSION_REQUEST_CODE = 42
     private val ADMIN_REQUEST_CODE = 1
     private var mHaveOverlayPermission = true
+    private lateinit var sp: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +39,24 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel()
         }
+
+        sp = getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE)
+
         mainSwitch.setOnCheckedChangeListener{_, isChecked ->
             val touchIntent = Intent(this, AssistiveTouchService::class.java)
+            val spe = sp.edit()
             if(isChecked) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(touchIntent)
                 } else {
                     startService(touchIntent)
                 }
-
+                spe.putBoolean(getString(R.string.service_state), true)
             } else {
                 stopService(touchIntent)
+                spe.putBoolean(getString(R.string.service_state), false)
             }
+            spe.apply()
         }
 
 
@@ -71,6 +79,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         if(isMyServiceRunning(AssistiveTouchService::class.java) && !mainSwitch.isChecked) {
             mainSwitch.toggle()
+        } else {
+            val spe = sp.edit()
+            spe.putBoolean(getString(R.string.service_state), false)
+            spe.apply()
         }
     }
 
@@ -93,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-    fun checkDrawOverlayPermission() {
+    private fun checkDrawOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
             val dialogBuilder = AlertDialog.Builder(this);
             dialogBuilder.apply {

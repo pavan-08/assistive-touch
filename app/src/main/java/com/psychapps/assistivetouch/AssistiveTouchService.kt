@@ -43,14 +43,12 @@ class AssistiveTouchService : Service() {
         val notificationIntent = Intent(this, MainActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
 
-        val CHANNEL_DEFAULT_IMPORTANCE = "low"
-        val notification = NotificationCompat.Builder(this, CHANNEL_DEFAULT_IMPORTANCE)
+        val notification = NotificationCompat.Builder(this, getString(R.string.cid))
                 .setContentTitle(getText(R.string.app_name))
                 .setContentText(getText(R.string.notification_message))
                 .setSmallIcon(R.drawable.ic_touch)
                 .setContentIntent(pendingIntent)
                 .setTicker(getText(R.string.ticker_text))
-                .setChannelId(getString(R.string.cid))
                 .build()
 
         startForeground(ONGOING_NOTIFICATION_ID, notification)

@@ -10,7 +10,6 @@
     <string name="sample_device_admin_description">We need this permission to lock screen</string>
     <string name="pref_file">AssistiveTouchPrefs</string>
     <string name="service_state">serviceState</string>
-    <string name="process_name">:AssistiveTouch.Service</string>
     <string name="notification_message">Assistive touch is running</string>
     <string name="ticker_text">Assistive touch is running</string>
     <string name="cid">service_channel</string>
